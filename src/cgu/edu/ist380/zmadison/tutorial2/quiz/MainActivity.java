@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
 	private TextView questionView; 
 	private TextView answerView; 
 	private EditText answerText;
+	private TextView totalQ;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class MainActivity extends Activity {
     			"What school are you attending?", "How many classes do you need to complete a Master's in IT?"};
     	answers = new String[]{"Cairo","IST380","CGU","11"};
     	currentQuestion = -1;
+    	totalQ = (TextView)findViewById(R.id.totalScore);
     	answerButton = (Button)findViewById(R.id.AnswerButton); 
     	questionButton = (Button)findViewById(R.id.QuestionButton); 
     	questionView = (TextView)
@@ -44,8 +46,11 @@ public class MainActivity extends Activity {
     	public void onClick(View v) { checkAnswer();
     	}});
     	questionButton.setOnClickListener(new OnClickListener(){ @Override
-    	public void onClick(View v) { showQuestion();
+    	public void onClick(View v) { 
+    		showQuestion();
     	}});
+    	
+    	showQuestion();
     	}
     	/*
     	* This method
@@ -60,6 +65,7 @@ public class MainActivity extends Activity {
     	currentQuestion =0;
     	questionView.setText(questions[currentQuestion]); answerView.setText("");
     	answerText.setText("");
+    	totalQ.setText("You are in question "+(currentQuestion+1)+"out of "+ questions.length);
     	}
     	/*
     	* This method return true if the answer equals to correct
